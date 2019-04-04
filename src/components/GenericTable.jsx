@@ -29,10 +29,10 @@ const GenericThead = ({ arrObj }) => {
 const GenericTbody = ({ arrObj }) => {
   const Tbody =
     <tbody>
-    {arrObj.map(item => {
+    {arrObj.map((item,index) => {
       const values = Object.values(item)
-      return (<tr>
-        {values.map(value => <td>{value}</td>)}
+      return (<tr key={index}>
+        {values.map((value,index) => <td key={index+value} >{value}</td>)}
       </tr>)
     })
     }
