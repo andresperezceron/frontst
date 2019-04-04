@@ -1,5 +1,5 @@
 import React from 'react'
-import  GenericTable  from '../GenericTable'
+import GenericTable from '../GenericTable'
 
 export default class Users extends React.Component {
     constructor(props) {
@@ -11,16 +11,19 @@ export default class Users extends React.Component {
         };
     }
     componentDidMount() {
-        fetch("http://localhost:6969/users")
-            .then((response) => {
-                return response.json()
+        fetch('http://localhost:6969/users').then((response) => {
+            return response.json()
+        }).then((json) => {
+            this.setState({
+                isLoaded: true,
+                users: json.users,
             })
-            .then((json) => {
-                this.setState({
-                    isLoaded: true,
-                    users: json.users
-                });
+        }).catch(error => {
+            this.setState({
+                error: "error en el ajax, arranca el server"
             })
+        })
+
     }
     render() {
         const {error, isLoaded, users} = this.state;
