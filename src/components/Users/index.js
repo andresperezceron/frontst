@@ -1,5 +1,5 @@
 import React from 'react'
-import  GenericTable  from './GenericTable'
+import  Index  from '../GenericTable'
 
 export default class Users extends React.Component {
     constructor(props) {
@@ -30,7 +30,7 @@ export default class Users extends React.Component {
             return <div>Loading...</div>;
         } else {
             return (
-              <GenericTable arrObj={users}/>
+              <Index arrObj={users}/>
         );
         }
     }

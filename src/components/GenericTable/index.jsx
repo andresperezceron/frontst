@@ -39,10 +39,10 @@ const GenericTbody = ({ arrObj }) => {
     </tbody>
   return Tbody
 }
-const GenericTable = ({ arrObj }) =>
+const Index = ({ arrObj }) =>
   <table>
     <GenericThead arrObj={arrObj}/>
     <GenericTbody arrObj={arrObj}/>
   </table>
 
-export default GenericTable
+export default Index

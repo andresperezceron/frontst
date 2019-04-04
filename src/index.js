@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Users from './components/Users.js';
+import Index from './components/Users';
 
 const app = document.getElementById("root");
-ReactDOM.render(<Users/>, app);
+ReactDOM.render(<Index/>, app);
