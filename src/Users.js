@@ -33,8 +33,9 @@ export default class Users extends React.Component {
                 rows.push(
                 <tr key={user.id}>
                     <td>{user.id}</td>
-                    <td>{user.log_name}</td>
-                    <td>{user.pasword}</td>
+                    <td>{user.name}</td>
+                    <td>{user.login}</td>
+                    <td>{user.password}</td>
                     </tr>
             );
             }.bind(this));
@@ -44,6 +45,7 @@ export default class Users extends React.Component {
                         <tr>
                             <th>ID</th>
                             <th>Nombre</th>
+                            <th>Login</th>
                             <th>Password</th>
                         </tr>
                     </thead>
