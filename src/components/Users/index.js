@@ -28,7 +28,7 @@ export default class Users extends React.Component {
     render() {
         const {error, isLoaded, users} = this.state;
         if(error) {
-            return <div>Error: {error.message}</div>;
+            return <div>Error: {error}</div>;
         } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
