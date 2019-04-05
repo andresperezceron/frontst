@@ -6,31 +6,30 @@ const StyledTable = styled.table`
   width: 100%; 
   padding: auto;
   border-radius: 10px;
+  border: 2px solid darkred;
 `
 const StyledTr = styled.tr`
 background-color: #657b83;
-  border-radius: 10px;
 `
 const StyledTd = styled.td`
   background-color: #cb4b16;
   border-radius: 10px;
 `
+
+//assert is array and have at least one object inside.
+const isArrayWithOneObjectOrMore =
+    (arrObj) => (Array.isArray(arrObj) && arrObj.length > 0)?true:false
+
 /**
- *
- * @param arrObj , array de objetos que tienen que ser todos iguales.
- * @returns {*} JSX element que contiene <thead>
- *                                          <tr>
- *                                              <td>key<td>
- *                                           </tr>
- */
+ * @param arrObj , array de objetos con al menos 1 elemento.
+ * @returns {*} JSX element que contiene <thead> o nada.
+ **/
 const GenericThead = ({ arrObj }) => {
-    //assert is array and have at least one object inside.
-    if (!Array.isArray(arrObj) || !arrObj.length > 0) {
-        return
-    }
+    if (!isArrayWithOneObjectOrMore(arrObj))
+        return;
+
     //extract first element keys.
     const keys = Object.keys(arrObj[0])
-
     //now we can construct the thead
     const Thead =
         <thead>
@@ -42,6 +41,9 @@ const GenericThead = ({ arrObj }) => {
     return Thead
 }
 const GenericTbody = ({ arrObj }) => {
+    if (!isArrayWithOneObjectOrMore(arrObj))
+        return;
+
     const Tbody =
         <tbody>
         {arrObj.map((item, index) => {
