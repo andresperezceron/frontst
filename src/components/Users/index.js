@@ -1,7 +1,6 @@
 import React from 'react'
 import GenericTable from '../GenericTable'
 import {ajax} from 'rxjs/ajax'
-console.log('ajax', ajax);//TODO: borrame.
 
 export default class Users extends React.Component {
     constructor(props) {
