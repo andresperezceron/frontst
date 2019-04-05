@@ -5,12 +5,15 @@ import styled from 'styled-components'
 const StyledTable = styled.table`
   width: 100%; 
   padding: auto;
+  border-radius: 10px;
 `
 const StyledTr = styled.tr`
 background-color: #657b83;
+  border-radius: 10px;
 `
 const StyledTd = styled.td`
-  background-color: #268bd2;
+  background-color: #cb4b16;
+  border-radius: 10px;
 `
 /**
  *
