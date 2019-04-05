@@ -6,6 +6,9 @@ const StyledTable = styled.table`
   width: 100%; 
   padding: auto;
 `
+const StyledTr = styled.tr`
+background-color: #fe6157;
+`
 /**
  *
  * @param arrObj , array de objetos que tienen que ser todos iguales.
@@ -25,9 +28,9 @@ const GenericThead = ({ arrObj }) => {
     //now we can construct the thead
     const Thead =
         <thead>
-        <tr>
+        <StyledTr>
             {keys.map((key, index) => <td key={index}>{key.toUpperCase()}</td>)}
-        </tr>
+        </StyledTr>
         </thead>
 
     return Thead
