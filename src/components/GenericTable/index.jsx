@@ -7,7 +7,10 @@ const StyledTable = styled.table`
   padding: auto;
 `
 const StyledTr = styled.tr`
-background-color: #fe6157;
+background-color: #657b83;
+`
+const StyledTd = styled.td`
+  background-color: #268bd2;
 `
 /**
  *
@@ -42,7 +45,7 @@ const GenericTbody = ({ arrObj }) => {
             const values = Object.values(item)
             return (<tr key={index}>
                 {values.map(
-                    (value, index) => <td key={index + value}>{value}</td>)}
+                    (value, index) => <StyledTd key={index + value}>{value}</StyledTd>)}
             </tr>)
         })
         }
