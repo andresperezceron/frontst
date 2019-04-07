@@ -1,24 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
 
-
 const StyledTable = styled.table`
-  width: 100%; 
-  padding: auto;
-  border-radius: 10px;
-  border: 2px solid darkred;
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 `
-const StyledTr = styled.tr`
-background-color: #657b83;
+const StyledTh = styled.th`
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 `
 const StyledTd = styled.td`
-  background-color: #cb4b16;
-  border-radius: 10px;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+`
+const StyledTr = styled.tr`
+  & :nth-child(even) {
+   background-color: #dddddd;
 `
 
 //assert is array and have at least one object inside.
 const isArrayWithOneObjectOrMore =
-    (arrObj) => (Array.isArray(arrObj) && arrObj.length > 0)?true:false
+    (arrObj) => (Array.isArray(arrObj) && arrObj.length > 0) ? true : false
 
 /**
  * @param arrObj , array de objetos con al menos 1 elemento.
@@ -26,7 +31,7 @@ const isArrayWithOneObjectOrMore =
  **/
 const GenericThead = ({ arrObj }) => {
     if (!isArrayWithOneObjectOrMore(arrObj))
-        return;
+        return
 
     //extract first element keys.
     const keys = Object.keys(arrObj[0])
@@ -34,7 +39,8 @@ const GenericThead = ({ arrObj }) => {
     const Thead =
         <thead>
         <StyledTr>
-            {keys.map((key, index) => <td key={index}>{key.toUpperCase()}</td>)}
+            {keys.map((key, index) => <StyledTh
+                key={index}>{key.toUpperCase()}</StyledTh>)}
         </StyledTr>
         </thead>
 
@@ -42,16 +48,17 @@ const GenericThead = ({ arrObj }) => {
 }
 const GenericTbody = ({ arrObj }) => {
     if (!isArrayWithOneObjectOrMore(arrObj))
-        return;
+        return
 
     const Tbody =
         <tbody>
         {arrObj.map((item, index) => {
             const values = Object.values(item)
-            return (<tr key={index}>
+            return (<StyledTr key={index}>
                 {values.map(
-                    (value, index) => <StyledTd key={index + value}>{value}</StyledTd>)}
-            </tr>)
+                    (value, index) =>
+                        <StyledTd key={index + value}>{value}</StyledTd>)}
+            </StyledTr>)
         })
         }
         </tbody>
