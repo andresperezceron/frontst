@@ -8,7 +8,7 @@ import React from 'react'
  *                                              <td>key<td>
  *                                           </tr>
  */
-const GenericThead = ({ arrObj }) => {
+const GenericThead = ({arrObj}) => {
   //assert is array and have at least one object inside.
   if (!Array.isArray(arrObj) || !arrObj.length > 0) {
     return
