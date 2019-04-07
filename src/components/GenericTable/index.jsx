@@ -11,7 +11,11 @@ const StyledTh = styled.th`
   text-align: left;
   padding: 8px;
 `
-const StyledTd = styled(StyledTh)``
+const StyledTd = styled.td`
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+`
 
 const StyledTr = styled.tr`
   & :nth-child(even) {
