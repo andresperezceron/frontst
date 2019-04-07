@@ -1,48 +1,74 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const StyledTable = styled.table`
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+`
+const StyledTh = styled.th`
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+`
+const StyledTd = styled.td`
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+`
+
+const StyledTr = styled.tr`
+  & :nth-child(even) {
+   background-color: #dddddd;
+`
+
+//assert is array and have at least one object inside.
+const isArrayWithOneObjectOrMore =
+    (arrObj) => (Array.isArray(arrObj) && arrObj.length > 0) ? true : false
 
 /**
- *
- * @param arrObj , array de objetos que tienen que ser todos iguales.
- * @returns {*} JSX element que contiene <thead>
- *                                          <tr>
- *                                              <td>key<td>
- *                                           </tr>
- */
-const GenericThead = ({arrObj}) => {
-  //assert is array and have at least one object inside.
-  if (!Array.isArray(arrObj) || !arrObj.length > 0) {
-    return
-  }
-  //extract first element keys.
-  const keys = Object.keys(arrObj[0])
+ * @param arrObj , array de objetos con al menos 1 elemento.
+ * @returns {*} JSX element que contiene <thead> o nada.
+ **/
+const GenericThead = ({ arrObj }) => {
+    if (!isArrayWithOneObjectOrMore(arrObj))
+        return
 
-  //now we can construct the thead
-  const Thead =
-    <thead>
-    <tr>
-      {keys.map((key, index) => <td key={index}>{key.toUpperCase()}</td>)}
-    </tr>
-    </thead>
+    //extract first element keys.
+    const keys = Object.keys(arrObj[0])
+    //now we can construct the thead
+    const Thead =
+        <thead>
+        <StyledTr>
+            {keys.map((key, index) => <StyledTh
+                key={index}>{key.toUpperCase()}</StyledTh>)}
+        </StyledTr>
+        </thead>
 
-  return Thead
+    return Thead
 }
 const GenericTbody = ({ arrObj }) => {
-  const Tbody =
-    <tbody>
-    {arrObj.map((item,index) => {
-      const values = Object.values(item)
-      return (<tr key={index}>
-        {values.map((value,index) => <td key={index+value} >{value}</td>)}
-      </tr>)
-    })
-    }
-    </tbody>
-  return Tbody
-}
-const Index = ({ arrObj }) =>
-  <table>
-    <GenericThead arrObj={arrObj}/>
-    <GenericTbody arrObj={arrObj}/>
-  </table>
+    if (!isArrayWithOneObjectOrMore(arrObj))
+        return
 
-export default Index
+    const Tbody =
+        <tbody>
+        {arrObj.map((item, index) => {
+            const values = Object.values(item)
+            return (<StyledTr key={index}>
+                {values.map(
+                    (value, index) =>
+                        <StyledTd key={index + value}>{value}</StyledTd>)}
+            </StyledTr>)
+        })
+        }
+        </tbody>
+    return Tbody
+}
+const GenericTable = ({ arrObj }) =>
+    <StyledTable>
+        <GenericThead arrObj={arrObj}/>
+        <GenericTbody arrObj={arrObj}/>
+    </StyledTable>
+
+export default GenericTable
