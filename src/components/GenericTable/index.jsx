@@ -31,8 +31,10 @@ const isArrayWithOneObjectOrMore =
  * @returns {*} JSX element que contiene <thead> o nada.
  **/
 const GenericThead = ({ arrObj }) => {
-    if (!isArrayWithOneObjectOrMore(arrObj))
+    if (!isArrayWithOneObjectOrMore(arrObj)) {
+        throw new Error('arrObj viene vacio o sin elementos')
         return
+    }
 
     //extract first element keys.
     const keys = Object.keys(arrObj[0])
@@ -48,8 +50,10 @@ const GenericThead = ({ arrObj }) => {
     return Thead
 }
 const GenericTbody = ({ arrObj }) => {
-    if (!isArrayWithOneObjectOrMore(arrObj))
+    if (!isArrayWithOneObjectOrMore(arrObj)) {
+        throw new Error('arrObj viene vacio o sin elementos')
         return
+    }
 
     const Tbody =
         <tbody>
