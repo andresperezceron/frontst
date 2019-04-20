@@ -7,12 +7,12 @@ const StyledTable = styled.table`
   width: 100%;
 `
 const StyledTh = styled.th`
-  border: 1px solid #dddddd;
+  border: 1px solid black;
   text-align: left;
   padding: 8px;
 `
 const StyledTd = styled.td`
-  border: 1px solid #dddddd;
+  border: 1px solid black;
   text-align: left;
   padding: 8px;
 `
@@ -20,6 +20,7 @@ const StyledTd = styled.td`
 const StyledTr = styled.tr`
   & :nth-child(even) {
    background-color: #dddddd;
+   border: 1px solid black;
 `
 
 //assert is array and have at least one object inside.
@@ -31,48 +32,49 @@ const isArrayWithOneObjectOrMore =
  * @returns {*} JSX element que contiene <thead> o nada.
  **/
 const GenericThead = ({ arrObj }) => {
-    if (!isArrayWithOneObjectOrMore(arrObj)) {
-        throw new Error('arrObj viene vacio o sin elementos')
-        return
-    }
+    if(!isArrayWithOneObjectOrMore(arrObj))
+        return;
 
     //extract first element keys.
-    const keys = Object.keys(arrObj[0])
+    const keys = Object.keys(arrObj[0]);
     //now we can construct the thead
-    const Thead =
+    return(
         <thead>
         <StyledTr>
-            {keys.map((key, index) => <StyledTh
-                key={index}>{key.toUpperCase()}</StyledTh>)}
+            {keys.map((key, index) =>
+                <StyledTh key={index}>
+                    {key.toUpperCase()}
+                </StyledTh>
+            )}
         </StyledTr>
         </thead>
+    )
+};
 
-    return Thead
-}
 const GenericTbody = ({ arrObj }) => {
-    if (!isArrayWithOneObjectOrMore(arrObj)) {
-        throw new Error('arrObj viene vacio o sin elementos')
-        return
-    }
+    if(!isArrayWithOneObjectOrMore(arrObj))
+        return;
 
-    const Tbody =
+    return(
         <tbody>
         {arrObj.map((item, index) => {
-            const values = Object.values(item)
-            return (<StyledTr key={index}>
-                {values.map(
-                    (value, index) =>
-                        <StyledTd key={index + value}>{value}</StyledTd>)}
-            </StyledTr>)
-        })
-        }
+            const values = Object.values(item);
+            return(
+                <StyledTr key={index}>
+                    {values.map((value, index) =>
+                        <StyledTd key={index + value}>{value}</StyledTd>
+                    )}
+                </StyledTr>
+            )}
+         )}
         </tbody>
-    return Tbody
-}
+    )
+};
+
 const GenericTable = ({ arrObj }) =>
     <StyledTable>
         <GenericThead arrObj={arrObj}/>
         <GenericTbody arrObj={arrObj}/>
-    </StyledTable>
+    </StyledTable>;
 
 export default GenericTable
