@@ -5,4 +5,4 @@ import Users from './components/Users';
 import FormLogin from './components/FormLogin';
 
 const app = document.getElementById("root");
-ReactDOM.render(<FormLogin/>, app);
+ReactDOM.render(<Users/>, app);

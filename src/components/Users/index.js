@@ -33,7 +33,7 @@ export default class Users extends React.Component {
         //nos subscribimos a ese flujo como observadores, para ello , le pasamos
         //3 callbacks ...
         usersJson$.pipe(
-            map(function(item) {return item.users})
+          //  map(function(item) {return item.users})
         ).subscribe(observerDeUsers)
 
 
