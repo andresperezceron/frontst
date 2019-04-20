@@ -1,2 +1,4 @@
-export default Object.freeze({NAME: 'name',
-                                    PASSWORD: 'password'})
+export default Object.freeze({
+    NAME: 'name',
+    PASSWORD: 'password'
+})
