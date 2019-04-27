@@ -39,8 +39,13 @@ export default class FormLogin extends React.Component {
     }
 
     handleSubmit(event) {
-        const usersJson$ = ajax.getJSON('http://localhost:6969/login');
-        usersJson$.pipe().subscribe();
+        const loginPost$ = ajax.post(
+            'http://localhost:6969/login',
+            {name: 'pepe', password: 'pepa'}
+            ,{}
+            );
+        loginPost$.subscribe(console.log, console.log);
+
         alert('A name was submitted: ' + this.state);
         event.preventDefault();
     }
