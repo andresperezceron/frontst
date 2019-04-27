@@ -46,7 +46,8 @@ export default class FormLogin extends React.Component {
             );
         loginPost$.subscribe(console.log, console.log);
 
-        alert('A name was submitted: ' + this.state);
+        console.log('A name was submitted: ' + this.state.name);
+        console.log('A password : ' + this.state.password);
         event.preventDefault();
     }
 
