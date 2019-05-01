@@ -77,7 +77,7 @@ export default class FormLogin extends React.Component {
     }
 
     render() {
-        const {isLogin} = this.state;;
+        const {isLogin} = this.state;
         return (
             <StyledForm onSubmit={this.handleSubmit}>
                 <H1>Login</H1>
