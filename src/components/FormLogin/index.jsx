@@ -3,15 +3,34 @@ import styled from 'styled-components'
 import constants from './constants'
 import {ajax} from "rxjs/ajax";
 
+
 const StyledForm = styled.form`
+  margin:  60px auto;
+  padding: 12px 20px;
+  width: 300px;
+  border: 1px solid grey;
   border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  width: 50%;
+  background: bisque;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  background-color: coral;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
+const H1 = styled.h1`
+  text-align: center;
+  color: #777;
 `;
 
 const StyledTextField = styled.input`
-  width: 100%;
+  width: 100%;;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -25,7 +44,8 @@ export default class FormLogin extends React.Component {
         super(props);
         this.state = {
             name: undefined,
-            password: undefined
+            password: undefined,
+            isLogin: true
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,29 +61,30 @@ export default class FormLogin extends React.Component {
     handleSubmit(event) {
         const loginPost$ = ajax.post(
             'http://localhost:6969/login',
-            {name: 'pepe', password: 'pepa'}
-            ,{}
+            {
+                name: this.state.name,
+                password: this.state.password },
+            {}
             );
-        loginPost$.subscribe(console.log, console.log);
 
-        alert('A name was submitted: ' + this.state);
+        const ObbRequest = {
+            next: (res) => this.setState( {isLogin: res.response} ),
+            error: (res) => console.log(res.error()),
+            complete: () => {}
+        };
+        loginPost$.subscribe(ObbRequest);
         event.preventDefault();
     }
 
     render() {
+        const {isLogin} = this.state;;
         return (
-            <StyledForm>
-                <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Name:
-                        <StyledTextField name={constants.NAME} type="text" onChange={this.handleChange}/>
-                    </label>
-                    <label>
-                        Password:
-                        <StyledTextField name={constants.PASSWORD} type="text" onChange={this.handleChange}/>
-                    </label>
-                    <input type="submit" value="Submit"/>
-                </form>
+            <StyledForm onSubmit={this.handleSubmit}>
+                <H1>Login</H1>
+                <StyledTextField name={constants.NAME} type="text" placeholder={"email"} onChange={this.handleChange}/>
+                <StyledTextField name={constants.PASSWORD} type="text" placeholder={"password"} onChange={this.handleChange}/>
+                {!isLogin && <p>email o contraseña incorrecto¡</p>}
+                <Button>Enviar</Button>
             </StyledForm>
         );
     }
