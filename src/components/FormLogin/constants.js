@@ -1,4 +1,4 @@
 export default Object.freeze({
-    NAME: 'name',
+    EMAIL: 'email',
     PASSWORD: 'password'
 })
