@@ -1,30 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom';
-
-const Ul = styled.ul`
-  background-color: lightyellow;
-  border: 1px solid #ccc;
-  list-style-type: none;
-  margin: 0;
-  overflow: hidden;
-  padding: 0;
-`;
-
-const Li = styled.li`
-  color: white;
-  display: block;
-  float: left;
-  padding: 11px 30px;
-  text-align: center;
-  text-decoration: none;
-`;
-
-const A = styled(Link)`
-  color: coral;
-  text-decoration: none;
-`;
-
+import {Ul, Li, A} from './style.js'
 
 const NavBar = () => {
     return(
