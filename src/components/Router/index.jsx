@@ -4,27 +4,25 @@ import FormLogin from "../FormLogin";
 import Users from "../Users";
 import Home from "../Home";
 
-export default class Router extends React.Component {
-    render() {
-        return(
-            <BrowserRouter>
-                <div>
-                    <Switch>
-                        <Route
-                            exact
-                            path="/"
-                            render={() => <Home />} />
-                        <Route
-                            exact
-                            path="/login"
-                            render={() => <FormLogin />} />
-                        <Route
-                            exact
-                            path="/users"
-                            render={() => <Users />} />
-                    </Switch>
-                </div>
-            </BrowserRouter>
-        );
-    }
-}
+const Router = () => {
+    return(
+        <BrowserRouter>
+            <div>
+                <Switch>
+                    <Route
+                        exact
+                        path="/"
+                        component={Home} />
+                    <Route
+                        path="/login"
+                        component={FormLogin} />
+                    <Route
+                        path="/users"
+                        component={Users} />
+                </Switch>
+            </div>
+        </BrowserRouter>
+    );
+};
+
+export default Router;

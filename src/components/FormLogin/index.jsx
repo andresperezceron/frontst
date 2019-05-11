@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import constants from './constants'
+import { Redirect } from 'react-router-dom';
 import {ajax} from "rxjs/ajax";
 
 
@@ -63,7 +64,8 @@ export default class FormLogin extends React.Component {
         this.state = {
             email: undefined,
             password: undefined,
-            isLogin: true
+            isLogin: true,
+            firstSubmit: true
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -86,7 +88,7 @@ export default class FormLogin extends React.Component {
             );
 
         const ObbRequest = {
-            next: (res) => this.setState( {isLogin: res.response} ),
+            next: (res) => this.setState( {isLogin: res.response, firstSubmit: false} ),
             error: (res) => console.log(res.error()),
             complete: () => {}
         };
@@ -95,14 +97,15 @@ export default class FormLogin extends React.Component {
     }
 
     render() {
-        const {isLogin} = this.state;
+        const {isLogin, firstSubmit} = this.state;
         return (
             <Form onSubmit={this.handleSubmit}>
                 <H1>Log in</H1>
                 <Input name={constants.EMAIL} type="text" placeholder={"email"} onChange={this.handleChange}/>
                 <Input name={constants.PASSWORD} type="password" placeholder={"password"} onChange={this.handleChange}/>
                 <Button>Enviar</Button>
-                {!isLogin && <P>Error: email o password incorrectos</P>}
+                {(isLogin && !firstSubmit) && <Redirect to={"/"}/>}
+                {(!isLogin && !firstSubmit) && <P>Error: email o password incorrectos</P>}
                 <A href={""}>¿Olvidaste tu contraseña?</A>
             </Form>
         );
