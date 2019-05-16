@@ -25,15 +25,10 @@ export default class FormLogin extends React.Component {
     }
 
     handleSubmit(event) {
-        const loginPost$ = ajax.post(
-            'http://localhost:6969/login',
-            {
-                email: this.state.email,
-                password: this.state.password },
-            {}
-            );
+        const loginPost$ = ajax.post('http://localhost:6969/login',
+            {email: this.state.email, password: this.state.password});
 
-        const ObbRequest = {
+        const ObbLogin = {
             next: (res) => {
                 this.setState( {firstSubmit: false} );
                 this.props.value.setIsLogged((res.response));
@@ -41,21 +36,18 @@ export default class FormLogin extends React.Component {
             error: (res) => console.log(res.error()),
             complete: () => {
                 if(this.props.value.getIsLogged())
-                    usersJson$.subscribe(ObbUser);
+                    userPost$.subscribe(ObbUser);
             }
         };
+        loginPost$.subscribe(ObbLogin);
 
-        const usersJson$ = ajax.post(
-            'http://localhost:6969/user',
-            {email: this.state.email},
-            {}
-            );
+        const userPost$ = ajax.post('http://localhost:6969/user', {email: this.state.email});
         const ObbUser = {
             next: (res) => this.props.value.setCurrentUser(res.response),
             error: (res) => console.log(res.error()),
             complete: () =>{}
         };
-        loginPost$.subscribe(ObbRequest);
+
         event.preventDefault();
     }
 
