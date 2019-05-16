@@ -1,62 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
+import {ajax} from "rxjs/ajax";
 import constants from './constants'
 import { Redirect } from 'react-router-dom';
-import {ajax} from "rxjs/ajax";
+import {Form, Input, Button, A, H1, P} from './style.js'
 
-
-const Form = styled.form`
-  margin:  60px auto;
-  padding: 12px 20px;
-  width: 300px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background: bisque;
-`;
-
-const Input = styled.input`
-  background-color: lightyellow;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  display: inline-block;
-  font-size: 14px;
-  margin: 8px 0;
-  padding: 12px 20px;
-  width: 100%;
-  :focus {border: 2px solid darkorange;}
-`;
-
-const Button = styled.button`
-  width: 100%;
-  background-color: darkorange;
-  color: lightyellow;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  :hover {background-color: coral;}
-`;
-
-const A = styled.a`
-  text-align: center;
-  font-size: 15px;
-  color: darkorange;
-  display: block;
-  margin-top: 12px;
-  text-decoration: none;
-`;
-
-const P = styled.p`
-  color: saddlebrown;
-  text-align: center;
-`;
-
-const H1 = styled.h1`
-  text-align: center;
-  color: darkorange;
-`;
 
 export default class FormLogin extends React.Component {
     constructor(props) {
@@ -64,7 +11,6 @@ export default class FormLogin extends React.Component {
         this.state = {
             email: undefined,
             password: undefined,
-            isLogin: true,
             firstSubmit: true
         };
         this.handleChange = this.handleChange.bind(this);
@@ -88,24 +34,42 @@ export default class FormLogin extends React.Component {
             );
 
         const ObbRequest = {
-            next: (res) => this.setState( {isLogin: res.response, firstSubmit: false} ),
+            next: (res) => {
+                this.setState( {firstSubmit: false} );
+                this.props.value.setIsLogged((res.response));
+            },
             error: (res) => console.log(res.error()),
-            complete: () => {}
+            complete: () => {
+                if(this.props.value.getIsLogged())
+                    usersJson$.subscribe(ObbUser);
+            }
+        };
+
+        const usersJson$ = ajax.post(
+            'http://localhost:6969/user',
+            {email: this.state.email},
+            {}
+            );
+        const ObbUser = {
+            next: (res) => this.props.value.setCurrentUser(res.response),
+            error: (res) => console.log(res.error()),
+            complete: () =>{}
         };
         loginPost$.subscribe(ObbRequest);
         event.preventDefault();
     }
 
     render() {
-        const {isLogin, firstSubmit} = this.state;
+        const {firstSubmit} = this.state;
+        const isLogged = this.props.value.getIsLogged();
         return (
             <Form onSubmit={this.handleSubmit}>
                 <H1>Log in</H1>
                 <Input name={constants.EMAIL} type="text" placeholder={"email"} onChange={this.handleChange}/>
                 <Input name={constants.PASSWORD} type="password" placeholder={"password"} onChange={this.handleChange}/>
                 <Button>Enviar</Button>
-                {(isLogin && !firstSubmit) && <Redirect to={"/"}/>}
-                {(!isLogin && !firstSubmit) && <P>Error: email o password incorrectos</P>}
+                {(isLogged && !firstSubmit) && <Redirect to={"/"}/>}
+                {(!isLogged && !firstSubmit) && <P>Error: email o password incorrectos</P>}
                 <A href={""}>¿Olvidaste tu contraseña?</A>
             </Form>
         );

@@ -1,14 +1,13 @@
 import React from 'react'
-import {Header} from './style.js'
-import NavBar from './navBar'
+import {Header, P} from './style.js'
 
-const Home = () => {
+const Home = (props) => {
+    console.log(props.value.currentUser);
     return(
-        <div>
-            <Header>TITULO</Header>
-            <NavBar />
-        </div>
+        <Header>
+            Titulo
+            {props.value.getIsLogged() ?  <P>Logeado</P> : <P>NO ESTAS LOGEADO. Pulsa login</P>}
+        </Header>
     )
 };
-
 export default Home;
