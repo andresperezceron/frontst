@@ -2,9 +2,10 @@ import React from "react"
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
 import NavBar from '../NavBar'
 import FormLogin from '../FormLogin'
-import Users from '../Users'
+import Users from '../Users/index'
 import Home from '../Home'
 import Todo from '../Todo'
+import {GlobalStyle} from './style'
 
 export default class Router extends React.Component {
     constructor(props) {
@@ -23,6 +24,7 @@ export default class Router extends React.Component {
         return(
             <BrowserRouter>
                 <div>
+                    <GlobalStyle/>
                     <NavBar value={this.state}/>
                     <Route
                         exact

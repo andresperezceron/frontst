@@ -1,11 +1,11 @@
 import React from 'react'
-import {Header, P} from './style.js'
+import {Header, H1, P} from './style.js'
 
 const Home = (props) => {
     console.log(props.value.currentUser);
     return(
         <Header>
-            Titulo
+            <H1>S-Training</H1>
             {props.value.getIsLogged() ?  <P>Logeado</P> : <P>NO ESTAS LOGEADO. Pulsa login</P>}
         </Header>
     )

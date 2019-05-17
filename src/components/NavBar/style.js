@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import {Link} from "react-router-dom";
 
 export const Ul = styled.ul`
-  background-color: black;
+  background-color: #1d1e1e;
   list-style-type: none;
   margin: 0;
   overflow: hidden;
@@ -31,7 +31,7 @@ export const ATitle = styled(Link)`
 export const LiItem = styled.li`
   display: block;
   float: left;
-  font-family: Verdana, serif;
+  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
   font-size: 18px;
   padding-top: 20px;
   text-align: center;
@@ -42,23 +42,28 @@ export const AItem = styled(Link)`
   color: white;
   outline: none;
   text-decoration: none;
-  padding: 20px 25px 11.5px;
+  padding: 20px 25px 12px;
   :hover {
-    background-color: #181717;
+    background-color: #222323;
     color: rgb(97, 218, 251);
-    border-bottom: 3px solid rgb(97, 218, 251);
+    border-bottom: 4px solid rgb(97, 218, 251);
   }
 `;
 
-export const LiLogin = styled(LiItem)`
-  float: right;
+export const AItemRight = styled(AItem)`
+  padding: 20px 25px 15px;
 `;
 
-export const LiUserLogin = styled(LiTitle)`
+export const LiItemRight = styled(LiItem)`
+  float: right;
+  font-size: 15px;
+`;
+
+export const LiUserName = styled(LiTitle)`
   color: rgb(97, 218, 251);
   float: right;
   font-size: 12px;
   font-weight: normal;
   margin: 0;
-  padding: 28px 25px 0;
+  padding: 24px 25px 0;
 `;

@@ -31,23 +31,15 @@ export default class FormLogin extends React.Component {
         const ObbLogin = {
             next: (res) => {
                 this.setState( {firstSubmit: false} );
-                this.props.value.setIsLogged((res.response));
+                if(res.response) {
+                    this.props.value.setIsLogged(true);
+                    this.props.value.setCurrentUser(res.response);
+                }
             },
             error: (res) => console.log(res.error()),
-            complete: () => {
-                if(this.props.value.getIsLogged())
-                    userPost$.subscribe(ObbUser);
-            }
+            complete: () => {}
         };
         loginPost$.subscribe(ObbLogin);
-
-        const userPost$ = ajax.post('http://localhost:6969/user', {email: this.state.email});
-        const ObbUser = {
-            next: (res) => this.props.value.setCurrentUser(res.response),
-            error: (res) => console.log(res.error()),
-            complete: () =>{}
-        };
-
         event.preventDefault();
     }
 

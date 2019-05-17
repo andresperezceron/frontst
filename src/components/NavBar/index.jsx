@@ -1,8 +1,8 @@
 import React from 'react'
 import {
     Ul,
-    LiTitle, LiItem, LiUserLogin, LiLogin,
-    ATitle, AItem
+    LiTitle, LiItem, LiUserName, LiItemRight,
+    ATitle, AItem, AItemRight
 } from "./style";
 
 const NavBar = (props) => {
@@ -13,10 +13,10 @@ const NavBar = (props) => {
             <LiItem><AItem to="/">Home</AItem></LiItem>
             {props.value.getIsLogged() && <LiItem><AItem to="/users">Users</AItem></LiItem>}
             {!props.value.getIsLogged() ?
-                <LiLogin><AItem to="/login">Iniciar Sesión</AItem></LiLogin> :
-                <LiLogin><AItem to="/todo">Salir</AItem></LiLogin>}
-            {!props.value.isLogged && <LiLogin><AItem to="/todo">Registrarse</AItem></LiLogin>}
-            {props.value.isLogged && <LiUserLogin>{user}</LiUserLogin>}
+                <LiItemRight><AItemRight to="/login">Iniciar Sesión</AItemRight></LiItemRight> :
+                <LiItemRight><AItemRight to="/todo">Cerrar Sesión</AItemRight></LiItemRight>}
+            {!props.value.getIsLogged() && <LiItemRight><AItemRight to="/todo">Registrarse</AItemRight></LiItemRight>}
+            {props.value.getIsLogged() && <LiUserName>{user}</LiUserName>}
         </Ul>
     )
 };
