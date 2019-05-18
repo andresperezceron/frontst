@@ -6,7 +6,7 @@ export const Header = styled.header`
 
 export const H1 = styled.h1`
     color: rgb(97, 218, 251);
-    font-family: Verdana, sans-serif;
+    font-family: Verdana, serif;
     font-size: 60px;
     font-weight: bold;
     margin: 0;

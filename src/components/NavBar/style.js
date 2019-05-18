@@ -12,7 +12,7 @@ export const Ul = styled.ul`
 export const LiTitle = styled.li`
   display: block;
   float: left;
-  font-family: Verdana, sans-serif;
+  font: 24px "Century Gothic", Futura, sans-serif;;
   font-weight: bold;
   margin-left: 50px;
   margin-right: 200px;
@@ -31,7 +31,7 @@ export const ATitle = styled(Link)`
 export const LiItem = styled.li`
   display: block;
   float: left;
-  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+  font: 24px "Century Gothic", Futura, sans-serif;
   font-size: 18px;
   padding-top: 20px;
   text-align: center;
