@@ -5,8 +5,8 @@ const Home = (props) => {
     console.log(props.value.currentUser);
     return(
         <Header>
-            <H1>S-Training</H1>
-            {props.value.getIsLogged() ?  <P>Logeado</P> : <P>NO ESTAS LOGEADO. Pulsa login</P>}
+            <H1>Alexa Trainner</H1>
+            <P>Entrenamiento personalizado</P>
         </Header>
     )
 };

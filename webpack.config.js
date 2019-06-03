@@ -21,6 +21,7 @@ module.exports = {
         library: 'frontst'
     },
     devServer: {
+        historyApiFallback: true,
         contentBase: path.resolve(__dirname,  'public'),
         compress: true,
         port : 6868

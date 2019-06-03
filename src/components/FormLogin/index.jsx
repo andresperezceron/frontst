@@ -1,7 +1,7 @@
 import React from 'react'
 import {ajax} from "rxjs/ajax";
 import constants from './constants'
-import { Redirect } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import {Form, Input, Button, A, H1, P} from './style.js'
 
 
@@ -11,7 +11,7 @@ export default class FormLogin extends React.Component {
         this.state = {
             email: undefined,
             password: undefined,
-            firstSubmit: true
+            badLogin: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,11 +30,10 @@ export default class FormLogin extends React.Component {
 
         const ObbLogin = {
             next: (res) => {
-                this.setState( {firstSubmit: false} );
                 if(res.response) {
                     this.props.value.setIsLogged(true);
                     this.props.value.setCurrentUser(res.response);
-                }
+                }else this.setState({badLogin: true})
             },
             error: (res) => console.log(res.error()),
             complete: () => {}
@@ -44,7 +43,7 @@ export default class FormLogin extends React.Component {
     }
 
     render() {
-        const {firstSubmit} = this.state;
+        const {badLogin} = this.state;
         const isLogged = this.props.value.getIsLogged();
         return (
             <Form onSubmit={this.handleSubmit}>
@@ -52,8 +51,8 @@ export default class FormLogin extends React.Component {
                 <Input name={constants.EMAIL} type="text" placeholder={"email"} onChange={this.handleChange}/>
                 <Input name={constants.PASSWORD} type="password" placeholder={"password"} onChange={this.handleChange}/>
                 <Button>Enviar</Button>
-                {(isLogged && !firstSubmit) && <Redirect to={"/"}/>}
-                {(!isLogged && !firstSubmit) && <P>Error: email o password incorrectos</P>}
+                {isLogged && <Redirect to={"/"}/>}
+                {badLogin && <P>Error: email o password incorrectos</P>}
                 <A href={""}>¿Olvidaste tu contraseña?</A>
             </Form>
         );

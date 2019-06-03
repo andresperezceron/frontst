@@ -12,7 +12,9 @@ export const Ul = styled.ul`
 export const LiTitle = styled.li`
   display: block;
   float: left;
-  font: 24px "Century Gothic", Futura, sans-serif;;
+  font: 25px "Brush Script MT", Brush Script Std, cursive;
+  //font: 24px "Snell Roundhand", cursive, san-serif;
+  //font: 24px "Century Gothic", Futura, sans-serif;
   font-weight: bold;
   margin-left: 50px;
   margin-right: 200px;
@@ -22,8 +24,8 @@ export const LiTitle = styled.li`
 `;
 
 export const ATitle = styled(Link)`
-  color: rgb(97, 218, 251);
-  font-size: 22px;
+  //color: rgb(97, 218, 251);
+  color: #fd76ff;
   outline: none;
   text-decoration: none;
 `;
@@ -39,19 +41,19 @@ export const LiItem = styled.li`
 `;
 
 export const AItem = styled(Link)`
-  color: white;
+  color: #9c9c9c;
   outline: none;
   text-decoration: none;
-  padding: 20px 25px 12px;
+  padding: 20px 25px 14px;
   :hover {
     background-color: #222323;
-    color: rgb(97, 218, 251);
-    border-bottom: 4px solid rgb(97, 218, 251);
+    color: #fd76ff;
+    border-bottom: 4px solid #fd76ff;;
   }
 `;
 
 export const AItemRight = styled(AItem)`
-  padding: 20px 25px 15px;
+  padding: 20px 25px 17px;
 `;
 
 export const LiItemRight = styled(LiItem)`
@@ -59,11 +61,11 @@ export const LiItemRight = styled(LiItem)`
   font-size: 15px;
 `;
 
-export const LiUserName = styled(LiTitle)`
-  color: rgb(97, 218, 251);
+export const LiUserName = styled.li`
+  color: #fd76ff;;
   float: right;
-  font-size: 12px;
-  font-weight: normal;
-  margin: 0;
-  padding: 24px 25px 0;
+  font: 14px "Century Gothic", Futura, sans-serif;
+  text-align: center;
+  text-decoration: none;
+  padding: 21px 25px 0;
 `;
