@@ -62,7 +62,7 @@ export const LiItemRight = styled(LiItem)`
 `;
 
 export const LiUserName = styled.li`
-  color: #fd76ff;;
+  color: #fd76ff;
   float: right;
   font: 14px "Century Gothic", Futura, sans-serif;
   text-align: center;
